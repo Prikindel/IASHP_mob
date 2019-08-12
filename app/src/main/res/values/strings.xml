@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">IAS HP</string>
+    <string name="sensors_status">Состояние датчиков</string>
+    <string name="sensors_reading">Показания датчиков</string>
+    <string name="choice">Выбор предприятия</string>
+    <string name="electricity">Потребление электроэнергии:</string>
+    <string name="water">Потребление воды:</string>
+    <string name="heat">Выделение тепла:</string>
+    <string name="vape">Выделение паров:</string>
+    <string name="gas">Выделение газов:</string>
+    <string name="spec_gas">Выделение специальных газов:</string>
+    <string name="meters">м.куб.</string>
+    <string name="metr_sec">м.куб./сек.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
