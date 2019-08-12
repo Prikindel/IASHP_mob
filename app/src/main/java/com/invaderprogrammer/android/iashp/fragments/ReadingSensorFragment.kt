@@ -1,9 +1,12 @@
 package com.invaderprogrammer.android.iashp.fragments
 
 import android.os.Bundle
+import android.os.SystemClock.uptimeMillis
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.invaderprogrammer.android.iashp.R
@@ -20,6 +23,9 @@ class ReadingSensorFragment : Fragment(), ReadingContract.View {
     @Inject
     lateinit var presenter: ReadingPresenter
 
+    private val sendInterval = 300L
+    private var nextSend: Long = 0L
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,6 +39,46 @@ class ReadingSensorFragment : Fragment(), ReadingContract.View {
         App.appComponent.inject(this)
         presenter.attach(this)
         presenter.makeReading()
+
+        // Обработка скролинга ползунка
+        electricity.setOnSeekBarChangeListener(seekListener(electricity_value))
+        water.setOnSeekBarChangeListener(seekListener(water_value))
+        heat.setOnSeekBarChangeListener(seekListener(heat_value))
+        vape.setOnSeekBarChangeListener(seekListener(vape_value))
+        gas.setOnSeekBarChangeListener(seekListener(gas_value))
+        spec_gas.setOnSeekBarChangeListener(seekListener(spec_gas_value))
+    }
+
+    private fun seekListener(view_value: TextView): SeekBar.OnSeekBarChangeListener {
+        fun whenSeek(seekBar: SeekBar): String {
+            return when (seekBar) {
+                electricity -> "electricity"
+                water -> "water"
+                heat -> "heat"
+                vape -> "vape"
+                gas -> "gas"
+                spec_gas -> "spec_gas"
+                else -> ""
+            }
+        }
+
+        return object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
+                view_value.text = i.toString()
+                if (nextSend < uptimeMillis()) {
+                    presenter.postReading(whenSeek(seekBar), i)
+                    nextSend = uptimeMillis() + sendInterval
+                }
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+                nextSend = 0
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+                presenter.postReading(whenSeek(seekBar), seekBar.progress)
+            }
+        }
     }
 
     override fun addReading(reading: Reading) {
@@ -49,13 +95,6 @@ class ReadingSensorFragment : Fragment(), ReadingContract.View {
         vape.progress = reading.vape
         gas.progress = reading.gas
         spec_gas.progress = reading.specGas
-
-        electricity.visibility = View.VISIBLE
-        water.visibility = View.VISIBLE
-        heat.visibility = View.VISIBLE
-        vape.visibility = View.VISIBLE
-        gas.visibility = View.VISIBLE
-        spec_gas.visibility = View.VISIBLE
     }
 
     override fun showProgress() {
