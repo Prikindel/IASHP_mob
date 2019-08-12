@@ -40,7 +40,6 @@ class MainPresenter : MainContract.Presenter() {
                         it.name
                     )
                 )
-                //zavodsList.add(Zavod(it.id, it.name))
             }
             .doOnComplete {
                 view.hideProgress()
