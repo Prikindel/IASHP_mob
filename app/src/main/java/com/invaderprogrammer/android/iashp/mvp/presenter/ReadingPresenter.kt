@@ -56,4 +56,17 @@ class ReadingPresenter : ReadingContract.Presenter() {
         view.refresh()
         makeReading()
     }
+
+    override fun postReading(read: String, value: Int) {
+        subscribe(
+            smisApi.setReading(read, presenter.idZavod(), value)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+
+                }, {
+                    it.printStackTrace()
+                })
+        )
+    }
 }

@@ -14,5 +14,6 @@ class ReadingContract {
     abstract class Presenter : BaseContract.Presenter<View>() {
         abstract fun makeReading()
         abstract fun refreshReading()
+        abstract fun postReading(read: String, value: Int)
     }
 }

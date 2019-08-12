@@ -2,6 +2,7 @@ package com.invaderprogrammer.android.iashp.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.invaderprogrammer.android.iashp.mvp.presenter.SensorsPresenter
 
 abstract class BaseAdapter<VH : BaseAdapter.BaseViewHolder> : RecyclerView.Adapter<VH>() {
 
@@ -11,11 +12,6 @@ abstract class BaseAdapter<VH : BaseAdapter.BaseViewHolder> : RecyclerView.Adapt
     //возвращающает размер списка
     override fun getItemCount(): Int {
         return items.size
-    }
-
-    //связывает views с содержимым
-    override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.bind(getItem(position))
     }
 
     //возвращает позицию элемента в списке
@@ -35,6 +31,6 @@ abstract class BaseAdapter<VH : BaseAdapter.BaseViewHolder> : RecyclerView.Adapt
 
     //абстрактный класс ViewHolder
     abstract class BaseViewHolder(protected val view: View) : RecyclerView.ViewHolder(view) {
-        abstract fun bind(item: Any)
+        abstract fun bind(item: Any, position: Int, presenter: SensorsPresenter)
     }
 }

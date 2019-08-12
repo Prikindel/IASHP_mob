@@ -55,6 +55,19 @@ class SensorsPresenter : SensorsContract.Presenter() {
         )
     }
 
+    override fun postList(position: Int, isChecked: Boolean) {
+        val isCheck = if (isChecked) "1" else "0"
+        subscribe(
+            smisApi.setSensor("b${position + 1}", presenter.idZavod(), isCheck)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                }, {
+                    it.printStackTrace()
+                })
+        )
+    }
+
     override fun refreshList() {
         view.refresh()
         makeList()

@@ -15,5 +15,6 @@ class SensorsContract {
     abstract class Presenter : BaseContract.Presenter<View>() {
         abstract fun makeList()
         abstract fun refreshList()
+        abstract fun postList(position: Int, isChecked: Boolean)
     }
 }
