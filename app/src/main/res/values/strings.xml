@@ -11,6 +11,7 @@
     <string name="spec_gas">Выделение специальных газов:</string>
     <string name="meters">м.куб.</string>
     <string name="metr_sec">м.куб./сек.</string>
+    <string name="update_menu">Обновить</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

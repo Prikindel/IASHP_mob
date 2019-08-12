@@ -2,6 +2,8 @@ package com.invaderprogrammer.android.iashp.activitys
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -75,6 +77,21 @@ class MainActivity : AppCompatActivity(), MainContract.View, AdapterView.OnItemS
             }
         }
         presenter.clickSpiner()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_activity_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.update -> {
+                presenter.refreshSpiner()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun addZavod(zavod: Zavod) {
