@@ -8,13 +8,13 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.1"
+    buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.invaderprogrammer.android.iashp"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 5
-        versionName "1.9"
+        versionCode 6
+        versionName "1.9.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
