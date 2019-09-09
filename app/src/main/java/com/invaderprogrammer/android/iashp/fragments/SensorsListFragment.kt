@@ -42,7 +42,7 @@ class SensorsListFragment : BaseListFragment(), SensorsContract.View {
     }
 
     override fun addSensor(sensor: Sensor) {
-        if (!sensor.name.equals("0"))
+        if (sensor.name != "0")
             viewAdapter.add(sensor)
     }
 

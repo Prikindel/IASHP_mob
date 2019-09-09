@@ -1,8 +1,10 @@
 package com.invaderprogrammer.android.iashp.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils.loadAnimation
 import com.invaderprogrammer.android.iashp.R
 import com.invaderprogrammer.android.iashp.di.App
 import com.invaderprogrammer.android.iashp.mvp.presenter.SensorsPresenter
@@ -10,10 +12,14 @@ import com.invaderprogrammer.android.iashp.rest.Sensor
 import kotlinx.android.synthetic.main.sensor.view.*
 import javax.inject.Inject
 
+
 class SensorsAdapter : BaseAdapter<SensorsAdapter.SensorsViewHolder>() {
 
     @Inject
     lateinit var presenter: SensorsPresenter
+    @Inject
+    lateinit var context: Context
+    private var lastPosition: Int = -1
 
     init {
         App.appComponent.inject(this)
@@ -28,6 +34,7 @@ class SensorsAdapter : BaseAdapter<SensorsAdapter.SensorsViewHolder>() {
     //связывает views с содержимым
     override fun onBindViewHolder(holder: SensorsViewHolder, position: Int) {
         holder.bind(getItem(position), position, presenter)
+        setAnimation(holder.itemView, position)
     }
 
     //реализация вьюхолдера
@@ -54,5 +61,14 @@ class SensorsAdapter : BaseAdapter<SensorsAdapter.SensorsViewHolder>() {
             }
         }
 
+    }
+
+    private fun setAnimation(viewToAnimate: View, position: Int) {
+        // If the bound view wasn't previously displayed on screen, it animated
+        if (position > lastPosition) {
+            val animation = loadAnimation(context, R.anim.push_left_in)
+            viewToAnimate.startAnimation(animation)
+            lastPosition = position
+        }
     }
 }
