@@ -42,7 +42,7 @@ class RestModule {
     @Named("SMIS_API")
     fun provideIASHPRetrofit(gson: Gson, okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl("http://isahp.mcdir.ru/")
+            .baseUrl("https://gisp.gov.ru/iashp/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(okHttpClient)

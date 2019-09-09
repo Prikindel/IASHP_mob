@@ -82,19 +82,37 @@ class ReadingSensorFragment : Fragment(), ReadingContract.View {
     }
 
     override fun addReading(reading: Reading) {
-        electricity_value.text = reading.electricity.toString()
-        water_value.text = reading.water.toString()
-        heat_value.text = reading.heat.toString()
-        vape_value.text = reading.vape.toString()
-        gas_value.text = reading.gas.toString()
-        spec_gas_value.text = reading.specGas.toString()
-
-        electricity.progress = reading.electricity
-        water.progress = reading.water
-        heat.progress = reading.heat
-        vape.progress = reading.vape
-        gas.progress = reading.gas
-        spec_gas.progress = reading.specGas
+        reading.also {
+            it.electricity.let { value ->
+                electricity.progress = value
+                electricity_value.text = value.toString()
+            }
+        }.also {
+            it.water.let { value ->
+                water.progress = value
+                water_value.text = value.toString()
+            }
+        }.also {
+            it.heat.let { value ->
+                heat.progress = value
+                heat_value.text = value.toString()
+            }
+        }.also {
+            it.vape.let { value ->
+                vape.progress = value
+                vape_value.text = value.toString()
+            }
+        }.also {
+            it.gas.let { value ->
+                gas.progress = value
+                gas_value.text = value.toString()
+            }
+        }.also {
+            it.specGas.let { value ->
+                spec_gas.progress = value
+                spec_gas_value.text = value.toString()
+            }
+        }
     }
 
     override fun showProgress() {

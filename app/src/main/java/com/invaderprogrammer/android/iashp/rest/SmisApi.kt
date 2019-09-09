@@ -20,7 +20,7 @@ interface SmisApi {
     @GET("api/sensor-update.php")
     fun setSensor(
         @Query("sensor") sensor: String,
-        @Query("zavod") id: Int,
+        @Query("id") id: Int,
         @Query("threat") onoff: String
     ): Observable<Sensor>
 
@@ -32,7 +32,7 @@ interface SmisApi {
     @GET("api/setread.php")
     fun setReading(
         @Query("read") read: String,
-        @Query("zavod") id: Int,
+        @Query("id") id: Int,
         @Query("value") value: Int
     ): Observable<Reading>
 }
