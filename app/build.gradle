@@ -11,10 +11,10 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.invaderprogrammer.android.iashp"
-        minSdkVersion 19
+        minSdkVersion 20
         targetSdkVersion 29
-        versionCode 9
-        versionName "1.9.4"
+        versionCode 10
+        versionName "1.9.4.3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
