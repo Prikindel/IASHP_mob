@@ -1,11 +1,8 @@
 package com.invaderprogrammer.android.iashp.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-
 import com.invaderprogrammer.android.iashp.R
 import com.invaderprogrammer.android.iashp.adapter.BaseAdapter
 import com.invaderprogrammer.android.iashp.adapter.SensorsAdapter
@@ -17,18 +14,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 
-class SensorsListFragment : BaseListFragment(), SensorsContract.View {
+class SensorsListFragment : BaseListFragment(R.layout.fragment_sensors_list), SensorsContract.View {
 
     @Inject
     lateinit var presenter: SensorsPresenter
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sensors_list, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

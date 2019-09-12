@@ -22,7 +22,8 @@ import com.invaderprogrammer.android.iashp.rest.Zavod
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), MainContract.View, AdapterView.OnItemSelectedListener {
+class MainActivity : AppCompatActivity(R.layout.activity_main), MainContract.View,
+    AdapterView.OnItemSelectedListener {
 
     @Inject
     lateinit var adapter: ArrayAdapter<String>
@@ -55,7 +56,6 @@ class MainActivity : AppCompatActivity(), MainContract.View, AdapterView.OnItemS
         super.onCreate(savedInstanceState)
         presenter.attach(this)
         presenter.makeSpiner()
-        setContentView(R.layout.activity_main)
         navView = findViewById(R.id.nav_view)
 
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.invaderprogrammer.android.iashp.R
 import com.invaderprogrammer.android.iashp.adapter.BaseAdapter
 
-abstract class BaseListFragment : Fragment() {
+abstract class BaseListFragment(id: Int) : Fragment(id) {
 
     private lateinit var recyclerView: RecyclerView
     protected lateinit var viewAdapter: BaseAdapter<*>
