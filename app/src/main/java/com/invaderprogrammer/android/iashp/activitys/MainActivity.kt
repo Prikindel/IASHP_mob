@@ -104,6 +104,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), MainContract.Vie
 
     override fun hideProgress() {
         zavods.adapter = adapter
+
+        zavods.setSelection(presenter.getCountItemTest())
     }
 
     override fun showErrorMessage(error: String?) {

@@ -1,5 +1,6 @@
 package com.invaderprogrammer.android.iashp.mvp.presenter
 
+import android.util.Log
 import com.invaderprogrammer.android.iashp.di.App
 import com.invaderprogrammer.android.iashp.mvp.contract.MainContract
 import com.invaderprogrammer.android.iashp.rest.SmisApi
@@ -78,6 +79,17 @@ class MainPresenter : MainContract.Presenter() {
 
     override fun clickSpiner() {
         view.loadFragment()
+    }
+
+    override fun getCountItemTest(): Int {
+        val countString = view.spinner().adapter.count - 1
+        for (i in 0..countString) {
+            Log.i("TAG", view.spinner().adapter.getItem(i).toString())
+            if (view.spinner().adapter.getItem(i).toString() == "Тестовое Предприятие") {
+                return i
+            }
+        }
+        return 0
     }
 
 }

@@ -18,5 +18,6 @@ class MainContract {
         abstract fun makeSpiner()
         abstract fun refreshSpiner()
         abstract fun clickSpiner()
+        abstract fun getCountItemTest(): Int
     }
 }
