@@ -1,7 +1,6 @@
 package com.invaderprogrammer.android.iashp.activitys
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -122,7 +121,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), MainContract.Vie
     }
 
     override fun loadFragment() {
-        Log.i("pres", "click")
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.container, frag, null)
