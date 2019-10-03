@@ -56,7 +56,7 @@ class SensorsAdapter : BaseAdapter<SensorsAdapter.SensorsViewHolder>() {
 
                 view.switch_sensor.setOnClickListener { view ->
                     item.sensor = if (view.switch_sensor.isChecked) 1 else 0
-                    presenter.postList(position, view.switch_sensor.isChecked)
+                    presenter.postList(item.position, view.switch_sensor.isChecked)
                 }
             }
         }

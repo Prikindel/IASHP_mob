@@ -28,7 +28,6 @@ abstract class BaseAdapter<VH : BaseAdapter.BaseViewHolder> : RecyclerView.Adapt
     fun add(newItems: List<Any>) {
         items.addAll(newItems)
     }
-
     //абстрактный класс ViewHolder
     abstract class BaseViewHolder(protected val view: View) : RecyclerView.ViewHolder(view) {
         abstract fun bind(item: Any, position: Int, presenter: SensorsPresenter)

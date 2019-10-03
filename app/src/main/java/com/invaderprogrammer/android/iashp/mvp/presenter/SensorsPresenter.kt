@@ -26,7 +26,7 @@ class SensorsPresenter : SensorsContract.Presenter() {
     //создаем список, загружая данные с помощью RX
     override fun makeList() {
         view.showProgress()
-
+        var count = 1
 
         //подписываемся на поток данных
         subscribe(smisApi.getSensor(presenter.idZavod())
@@ -37,9 +37,11 @@ class SensorsPresenter : SensorsContract.Presenter() {
                 view.addSensor(
                     Sensor(
                         it.name,
-                        it.sensor
+                        it.sensor,
+                        count
                     )
                 )
+                count++
             }
             .doOnComplete {
                 view.hideProgress()
@@ -58,7 +60,7 @@ class SensorsPresenter : SensorsContract.Presenter() {
     override fun postList(position: Int, isChecked: Boolean) {
         val isCheck = if (isChecked) "1" else "0"
         subscribe(
-            smisApi.setSensor("b${position + 1}", presenter.idZavod(), isCheck)
+            smisApi.setSensor("b${position}", presenter.idZavod(), isCheck)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

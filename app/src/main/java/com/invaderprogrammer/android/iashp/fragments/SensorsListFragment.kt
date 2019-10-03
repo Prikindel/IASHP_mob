@@ -31,8 +31,9 @@ class SensorsListFragment : BaseListFragment(R.layout.fragment_sensors_list), Se
     }
 
     override fun addSensor(sensor: Sensor) {
-        if (sensor.name != "0")
+        if (sensor.name != "0") {
             viewAdapter.add(sensor)
+        }
     }
 
     override fun notifyAdapter() {
