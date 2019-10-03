@@ -13,8 +13,8 @@ android {
         applicationId "com.invaderprogrammer.android.iashp"
         minSdkVersion 20
         targetSdkVersion 29
-        versionCode 11
-        versionName "1.9.5"
+        versionCode 12
+        versionName "1.9.5.7"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
